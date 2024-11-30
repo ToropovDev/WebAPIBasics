@@ -2,9 +2,6 @@ from typing import Optional
 import requests
 from bs4 import BeautifulSoup
 import time
-from colorama import Fore, Style, init
-
-init(autoreset=True)
 
 
 def get_html(url: str) -> str:
@@ -67,16 +64,3 @@ def scrape_category(current_url: str) -> (list, str):
             break
 
     return products, category_name
-
-
-category_url = "https://www.maxidom.ru/catalog/vanny/"
-all_products, category_name = scrape_category(category_url)
-
-print(Fore.CYAN + f"Собранные товары в категории '{category_name}'")
-print(Style.BRIGHT + "-" * 40)
-
-for product in all_products:
-    print(
-        f"{Fore.GREEN}Товар: {Style.RESET_ALL}{product['name']}\n"
-        f"{Fore.YELLOW}Цена: {Style.RESET_ALL}{product['price']}\n"
-    )
